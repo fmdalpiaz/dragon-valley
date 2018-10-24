@@ -1,3 +1,14 @@
-<p>
-    list-dragons works!
-</p>
+<section class="section">
+    <div class="container">
+        <h1 class="title">Lista de Dragões</h1>
+
+        <div class="columns is-multiline dragon-list" *ngIf="dragons.length > 0">
+            <div class="column is-3 dragon" *ngFor="let dragon of dragons">
+                <div class="box">
+                    <div class="title is-4 dragon__name">{{ dragon.name }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
