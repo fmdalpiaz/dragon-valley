@@ -9,6 +9,12 @@ import { ViewDragonComponent } from './dragons/view-dragon/view-dragon.component
 import { ListDragonsComponent } from './dragons/list-dragons/list-dragons.component';
 import { ManipulateDragonComponent } from './dragons/manipulate-dragon/manipulate-dragon.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+library.add(fas);
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -19,7 +25,8 @@ import { ManipulateDragonComponent } from './dragons/manipulate-dragon/manipulat
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        FontAwesomeModule
     ],
     providers: [],
     bootstrap: [AppComponent]
