@@ -1,3 +1,7 @@
 export const environment = {
-    production: true
+    name: 'production',
+    production: true,
+    endpoints: {
+        dragons: 'https://dragons-api.herokuapp.com/api/dragons'
+    }
 };
