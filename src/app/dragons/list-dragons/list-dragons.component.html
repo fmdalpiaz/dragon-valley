@@ -6,7 +6,7 @@
                 <p>Mauris eget ultricies eros. Quisque id viverra erat, vitae malesuada metus. Pellentesque cursus id ante sit amet rhoncus. Suspendisse porta ante a bibendum tempor. In turpis nibh, malesuada ut est id, sollicitudin lacinia elit. Aliquam imperdiet vehicula luctus. Mauris sodales molestie laoreet. Nunc quis dolor porta orci gravida laoreet.</p>
 
                 <div class="columns is-multiline dragons-list" *ngIf="dragons.length > 0">
-                    <div class="column is-4 dragon" *ngFor="let dragon of dragons">
+                    <div class="column is-4 dragon" *ngFor="let dragon of dragons | orderBy: order">
                         <div class="box">
                             <h2 class="title is-4 dragon__name">{{ dragon.name }}</h2>
                             <h3 class="subtitle is-6 dragon__type">{{ dragon.type }}</h3>

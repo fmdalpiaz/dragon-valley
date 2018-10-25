@@ -10,11 +10,13 @@ import { Dragon } from './../dragon';
 })
 export class ListDragonsComponent implements OnInit {
     dragons: Dragon[];
+    order: string;
 
     constructor(private service: DragonsService) { }
 
     ngOnInit() {
         this.dragons = [];
+        this.order = 'name';
 
         this.service
             .getAll()
