@@ -15,7 +15,8 @@ const routes: Routes = [
         { path: 'dragons/edit/:slug', component: ManipulateDragonComponent },
         { path: 'dragons/:slug', component: ViewDragonComponent }
     ]},
-    { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
+    { path: 'page-not-found', component: PageNotFoundComponent },
+    { path: '**', pathMatch: 'full', redirectTo: '/page-not-found' }
 ];
 
 @NgModule({
