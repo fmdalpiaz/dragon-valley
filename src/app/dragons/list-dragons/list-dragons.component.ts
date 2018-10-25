@@ -6,7 +6,7 @@ import { Dragon } from './../dragon';
 @Component({
     selector: 'app-list-dragons',
     templateUrl: './list-dragons.component.html',
-    styles: []
+    styleUrls: ['./list-dragons.component.sass']
 })
 export class ListDragonsComponent implements OnInit {
     dragons: Dragon[];
@@ -19,9 +19,7 @@ export class ListDragonsComponent implements OnInit {
         this.service
             .getAll()
             .subscribe(
-                data => {
-                    this.dragons = this.filterSluggedDragons(data);
-                },
+                data => this.dragons = this.filterSluggedDragons(data),
                 err => console.error(err)
             );
     }
@@ -34,9 +32,7 @@ export class ListDragonsComponent implements OnInit {
         this.service
             .delete(slug)
             .subscribe(
-                data => {
-                    this.dragons = this.dragons.filter(item => item.slug !== slug);
-                },
+                data => this.dragons = this.dragons.filter(item => item.slug !== slug),
                 err => console.log(err)
             );
     }

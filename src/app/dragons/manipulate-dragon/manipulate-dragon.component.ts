@@ -7,7 +7,7 @@ import { Dragon } from '../dragon';
 @Component({
     selector: 'app-manipulate-dragon',
     templateUrl: './manipulate-dragon.component.html',
-    styles: []
+    styleUrls: ['./manipulate-dragon.component.sass']
 })
 export class ManipulateDragonComponent implements OnInit {
     dragon: Dragon;
