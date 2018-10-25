@@ -1,3 +1,16 @@
-<p>
-    view-dragon works!
-</p>
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column is-12">
+
+                <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a [routerLink]="['/dragons']">Vale dos Dragões</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">{{ dragon.name }}</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</section>

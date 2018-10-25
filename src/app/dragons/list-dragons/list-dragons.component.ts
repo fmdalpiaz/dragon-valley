@@ -30,4 +30,15 @@ export class ListDragonsComponent implements OnInit {
         return dragons.filter(dragon => dragon.slug.trim() !== '' && dragon.type.trim() !== '');
     }
 
+    public removeDragon(slug: string) {
+        this.service
+            .delete(slug)
+            .subscribe(
+                data => {
+                    this.dragons = this.dragons.filter(item => item.slug !== slug);
+                },
+                err => console.log(err)
+            );
+    }
+
 }

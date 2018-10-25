@@ -1,14 +1,39 @@
 <section class="section">
     <div class="container">
-        <h1 class="title">Lista de Dragões</h1>
+        <div class="columns">
+            <div class="column is-12">
+                <h2 class="title">Vale dos Dragões</h2>
 
-        <div class="columns is-multiline dragon-list" *ngIf="dragons.length > 0">
-            <div class="column is-3 dragon" *ngFor="let dragon of dragons">
-                <div class="box">
-                    <div class="title is-4 dragon__name">{{ dragon.name }}</div>
+                <div class="columns is-multiline dragons-list" *ngIf="dragons.length > 0">
+
+                    <div class="column is-3 dragon" *ngFor="let dragon of dragons">
+                        <div class="box">
+                            <h2 class="title is-4 dragon__name">{{ dragon.name }}</h2>
+                            <h3 class="subtitle is-6 dragon__type">{{ dragon.type }}</h3>
+                            <button type="button" class="button is-primary is-fullwidth dragon__cta" [routerLink]="['/dragons', dragon.slug]">Ver mais</button>
+
+                            <div class="field has-addons dragon__actions">
+                                <div class="control">
+                                    <button type="button" class="button is-small" title="Editar informações do dragão" [routerLink]="['/dragons', 'edit', dragon.slug]">
+                                        <span class="icon is-small">
+                                            <fa-icon icon="pencil-alt" size="sm"></fa-icon>
+                                        </span>
+                                    </button>
+                                </div>
+
+                                <div class="control">
+                                    <button type="button" class="button is-small" title="Remover dragão" (click)="removeDragon(dragon.slug)">
+                                        <span class="icon is-small">
+                                            <fa-icon icon="trash" size="sm"></fa-icon>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-
     </div>
 </section>
