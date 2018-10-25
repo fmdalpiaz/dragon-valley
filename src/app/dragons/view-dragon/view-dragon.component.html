@@ -1,7 +1,7 @@
 <section class="section">
     <div class="container">
         <div class="columns is-multiline">
-            <div class="column is-12">
+            <div class="column is-8 is-9-widescreen">
 
                 <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
                     <ul>
@@ -9,6 +9,15 @@
                         <li class="is-active"><a href="#" aria-current="page">{{ dragon.name }}</a></li>
                     </ul>
                 </nav>
+
+                <h2 class="title">{{ dragon.name }}</h2>
+
+                <dl>
+                    <dt>Tipo</dt>
+                    <dd>{{ dragon.type }}</dd>
+                    <dt>Histórias</dt>
+                    <dd>{{ dragon.histories.join(', ')}}</dd>
+                </dl>
 
             </div>
         </div>

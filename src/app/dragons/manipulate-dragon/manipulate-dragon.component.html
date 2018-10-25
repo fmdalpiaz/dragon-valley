@@ -20,14 +20,14 @@
 
                 <form *ngIf="!isLoadingData" [formGroup]="dragonForm" (ngSubmit)="submitForm()" novalidate>
                     <div class="field">
-                        <label for="dragonName" class="label">Nome:</label>
+                        <label for="dragonName" class="label">Nome</label>
                         <div class="control">
                             <input type="text" id="dragonName" class="input" placeholder="Qual o nome do dragão?" formControlName="name">
                         </div>
                     </div>
 
                     <div class="field">
-                        <label for="dragonType" class="label">Tipo:</label>
+                        <label for="dragonType" class="label">Tipo</label>
                         <div class="control">
                             <input type="text" id="dragonType" class="input" placeholder="Qual o tipo do dragão?" formControlName="type">
                         </div>
