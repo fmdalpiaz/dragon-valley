@@ -10,11 +10,11 @@
                             <li><a [routerLink]="['/dragons', dragon.slug]">{{ dragon.name }}</a></li>
                             <li class="is-active"><a href="#" aria-current="page">Editar dragão</a></li>
                         </ng-container>
-                        <li class="is-active" *ngIf="!isEditMode"><a href="#" aria-current="page">Criar dragão</a></li>
+                        <li class="is-active" *ngIf="!isEditMode"><a href="#" aria-current="page">Cadastrar dragão</a></li>
                     </ul>
                 </nav>
 
-                <h2 class="title">{{ isEditMode ? 'Editar': 'Adicionar' }} dragão</h2>
+                <h2 class="title">{{ isEditMode ? 'Editar': 'Cadastrar' }} dragão</h2>
             </div>
             <div class="column is-6">
 
@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="control">
-                            <button type="submit" class="button is-primary">Enviar</button>
+                            <button type="submit" class="button is-primary">{{ isEditMode ? 'Atualizar' : 'Cadastrar' }}</button>
                         </div>
                     </div>
                 </form>

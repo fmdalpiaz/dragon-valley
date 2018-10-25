@@ -1,16 +1,16 @@
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div class="column is-12">
-                <h2 class="title">Vale dos Dragões</h2>
+            <div class="column is-8 is-9-widescreen">
+                <h2 class="title">Conheça os Dragões</h2>
+                <p>Mauris eget ultricies eros. Quisque id viverra erat, vitae malesuada metus. Pellentesque cursus id ante sit amet rhoncus. Suspendisse porta ante a bibendum tempor. In turpis nibh, malesuada ut est id, sollicitudin lacinia elit. Aliquam imperdiet vehicula luctus. Mauris sodales molestie laoreet. Nunc quis dolor porta orci gravida laoreet.</p>
 
                 <div class="columns is-multiline dragons-list" *ngIf="dragons.length > 0">
-
-                    <div class="column is-3 dragon" *ngFor="let dragon of dragons">
+                    <div class="column is-4 dragon" *ngFor="let dragon of dragons">
                         <div class="box">
                             <h2 class="title is-4 dragon__name">{{ dragon.name }}</h2>
                             <h3 class="subtitle is-6 dragon__type">{{ dragon.type }}</h3>
-                            <button type="button" class="button is-primary is-fullwidth dragon__cta" [routerLink]="['/dragons', dragon.slug]">Ver mais</button>
+                            <button type="button" class="button is-link is-fullwidth dragon__cta" [routerLink]="['/dragons', dragon.slug]">Ver mais</button>
 
                             <div class="field has-addons dragon__actions">
                                 <div class="control">
@@ -31,8 +31,23 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
+
+            </div>
+            <div class="column is-4 is-3-widescreen">
+
+                <div class="message">
+                    <div class="message-header">
+                        <p>Não encontrou um dragão?</p>
+                    </div>
+                    <div class="message-body">
+                        <div class="content">
+                            <p>Suspendisse tincidunt vehicula dui ut ullamcorper. Suspendisse ut accumsan felis. Nam fermentum magna at egestas tempor.</p>
+                            <button type="button" class="button is-primary is-medium is-fullwidth" [routerLink]="['/dragons', 'new']">Cadastrar Dragão</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
