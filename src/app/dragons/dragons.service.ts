@@ -40,11 +40,11 @@ export class DragonsService extends HttpService {
         );
     }
 
-    public post(dragon: any): Observable<void> {
+    public post(dragon: any): Observable<Dragon> {
         return this.http.post(this.endpoint, dragon, {
             headers: this.getDefaultHeaders()
         }).pipe(
-            map((response: any) => response),
+            map((response: Dragon) => new Dragon(response)),
             catchError((err: HttpErrorResponse) => throwError(err))
         );
     }
