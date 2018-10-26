@@ -25,6 +25,7 @@ import localePt from '@angular/common/locales/pt';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { SearchFilterPipe } from './shared/pipes/search-filter.pipe';
 
 library.add(fas);
 registerLocaleData(localePt);
@@ -39,7 +40,8 @@ registerLocaleData(localePt);
         ListDragonsComponent,
         ManipulateDragonComponent,
         PageNotFoundComponent,
-        OrderPipe
+        OrderPipe,
+        SearchFilterPipe
     ],
     imports: [
         BrowserModule,

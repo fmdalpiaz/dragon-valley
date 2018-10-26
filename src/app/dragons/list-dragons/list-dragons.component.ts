@@ -10,6 +10,7 @@ import { Dragon } from './../dragon';
 })
 export class ListDragonsComponent implements OnInit {
     dragons: Dragon[];
+    filteredDragons: string;
     isLoading: boolean;
     order: string;
 
@@ -19,6 +20,7 @@ export class ListDragonsComponent implements OnInit {
         this.dragons = [];
         this.isLoading = true;
         this.order = 'name';
+        this.filteredDragons = '';
 
         this.service
             .getAll()

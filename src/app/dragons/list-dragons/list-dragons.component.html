@@ -4,11 +4,24 @@
 
 <div class="columns is-multiline">
     <div class="column is-12-tablet is-8-desktop is-9-fullhd">
-        <h2 class="title">Conheça os Dragões</h2>
+        <div class="level page-title-wrapper">
+            <div class="level-left">
+                <div class="level-item">
+                    <h2 class="title">Conheça os Dragões</h2>
+                </div>
+            </div>
+
+            <div class="level-right">
+                <div class="level-item">
+                    <input class="input dragon__filter" type="text" placeholder="Filtrar dragões" [(ngModel)]="filteredDragons">
+                </div>
+            </div>
+        </div>
+
         <p>Mauris eget ultricies eros. Quisque id viverra erat, vitae malesuada metus. Pellentesque cursus id ante sit amet rhoncus. Suspendisse porta ante a bibendum tempor. In turpis nibh, malesuada ut est id, sollicitudin lacinia elit. Aliquam imperdiet vehicula luctus. Mauris sodales molestie laoreet. Nunc quis dolor porta orci gravida laoreet.</p>
 
         <div class="columns is-multiline dragons-list" *ngIf="dragons.length > 0">
-            <div class="column is-6-tablet is-4-fullhd dragon" *ngFor="let dragon of dragons | orderBy: order : false: true">
+            <div class="column is-6-tablet is-4-fullhd dragon" *ngFor="let dragon of dragons | orderBy: order : false: true | searchFilter: filteredDragons : ['name']">
 
                 <div class="box">
                     <h2 class="title is-4 dragon__name"><a href="#" [routerLink]="['/dragons', dragon.slug]">{{ dragon.name }}</a></h2>
