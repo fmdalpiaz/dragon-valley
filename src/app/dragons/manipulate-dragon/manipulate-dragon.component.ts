@@ -147,9 +147,9 @@ export class ManipulateDragonComponent implements OnInit {
 
     private mapDragonProperties(): any {
         return {
-            name: this.dragonForm.get('name').value,
-            type: this.dragonForm.get('type').value,
-            histories: this.histories.value.map(item => item.history)
+            name: this.dragonForm.get('name').value.trim(),
+            type: this.dragonForm.get('type').value.trim(),
+            histories: this.histories.value.map(item => item.history.trim())
         };
     }
 
