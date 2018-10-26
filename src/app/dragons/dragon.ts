@@ -4,6 +4,7 @@ export class Dragon {
     private _type: string;
     private _histories: string[];
     private _createdAt: string;
+    private _updatedAt: string;
 
     constructor(data: any) {
         this._name = data.name || '';
@@ -11,6 +12,7 @@ export class Dragon {
         this._type = data.type || '';
         this._histories = data.histories || [];
         this._createdAt = data.created_at || '';
+        this._updatedAt = data.updated_at || '';
     }
 
     get name(): string {
@@ -51,6 +53,14 @@ export class Dragon {
 
     set createdAt(createdAt: string) {
         this._createdAt = createdAt;
+    }
+
+    get updatedAt(): string {
+        return this._updatedAt;
+    }
+
+    set updatedAt(updatedAt: string) {
+        this._updatedAt = updatedAt;
     }
 
 }
