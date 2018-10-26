@@ -6,10 +6,11 @@ import { DragonsService } from '../dragons.service';
 @Component({
     selector: 'app-view-dragon',
     templateUrl: './view-dragon.component.html',
-    styles: []
+    styleUrls: ['./view-dragon.component.sass']
 })
 export class ViewDragonComponent implements OnInit {
     dragon: Dragon;
+    isLoading: boolean;
 
     constructor(
         private router: Router,
@@ -18,6 +19,7 @@ export class ViewDragonComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.isLoading = true;
         this.dragon = new Dragon({});
 
         this.route.params.subscribe(params => {
@@ -33,12 +35,21 @@ export class ViewDragonComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.dragon = data;
-                        console.warn(this.dragon);
+                        this.isLoading = false;
                     },
                     err => this.router.navigate(['dragons'])
                 );
 
         });
+    }
+
+    public removeDragon(slug: string) {
+        this.service
+            .delete(slug)
+            .subscribe(
+                data => this.router.navigate(['dragons']),
+                err => console.log(err)
+            );
     }
 
 }

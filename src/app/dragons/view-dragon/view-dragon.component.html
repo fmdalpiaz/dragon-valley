@@ -1,25 +1,47 @@
-<section class="section">
-    <div class="container">
-        <div class="columns is-multiline">
-            <div class="column is-8 is-9-widescreen">
+<div class="pageloader is-info" [class.is-active]="isLoading">
+    <span class="title">Carregando...</span>
+</div>
 
-                <nav class="breadcrumb has-bullet-separator is-small" aria-label="breadcrumbs">
-                    <ul>
-                        <li><a [routerLink]="['/dragons']">Vale dos Dragões</a></li>
-                        <li class="is-active"><a href="#" aria-current="page">{{ dragon.name }}</a></li>
-                    </ul>
-                </nav>
+<div class="columns is-multiline">
+    <div class="column is-7-tablet is-5-widescreen">
 
-                <h2 class="title">{{ dragon.name }}</h2>
+        <nav class="breadcrumb is-small has-bullet-separator" aria-label="breadcrumbs">
+            <ul>
+                <li><a [routerLink]="['/dragons']">Vale dos Dragões</a></li>
+                <li class="is-active"><a href="#" aria-current="page">{{ dragon.name }}</a></li>
+            </ul>
+        </nav>
 
-                <dl>
-                    <dt>Tipo</dt>
-                    <dd>{{ dragon.type }}</dd>
-                    <dt>Histórias</dt>
-                    <dd>{{ dragon.histories.join(', ')}}</dd>
-                </dl>
+        <h2 class="title">{{ dragon.name }}</h2>
 
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <dl class="dragon-data">
+                        <dt>Tipo</dt>
+                        <dd>{{ dragon.type }}</dd>
+
+                        <ng-container *ngIf="dragon.histories && dragon.histories.length">
+                            <dt>Histórias</dt>
+                            <dd>{{ dragon.histories.join(', ') }}</dd>
+                        </ng-container>
+
+                        <dt>Data de criação</dt>
+                        <dd>{{ dragon.createdAt | date: 'EEEE, dd/MMM \'às\' HH:mm' }}</dd>
+
+                        <ng-container *ngIf="dragon.updatedAt !== ''">
+                            <dt>Última atualização</dt>
+                            <dd>{{ dragon.updatedAt | date: 'EEEE, dd/MMM \'às\' HH:mm' }}</dd>
+                        </ng-container>
+                    </dl>
+                </div>
             </div>
+
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item" [routerLink]="['/dragons', 'edit', dragon.slug]">Editar</a>
+                <a class="card-footer-item" (click)="removeDragon(dragon.slug)">Remover</a>
+            </footer>
         </div>
+
     </div>
-</section>
+</div>
