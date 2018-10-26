@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,11 +19,15 @@ import { AuthGuard, AuthService } from './core/auth';
 
 import { OrderPipe } from 'ngx-order-pipe';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
 library.add(fas);
+registerLocaleData(localePt);
 
 @NgModule({
     declarations: [
@@ -45,7 +49,14 @@ library.add(fas);
         ReactiveFormsModule,
         FontAwesomeModule
     ],
-    providers: [AuthService, AuthGuard],
+    providers: [
+        AuthService,
+        AuthGuard,
+        {
+            provide: LOCALE_ID,
+            useValue: 'pt-BR'
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
