@@ -1,0 +1,56 @@
+<div class="pageloader is-info" [class.is-active]="isLoading">
+    <span class="title">Carregando...</span>
+</div>
+
+<div class="columns is-multiline">
+    <div class="column is-12-tablet is-8-desktop is-9-fullhd">
+        <h2 class="title">Conheça os Dragões</h2>
+        <p>Mauris eget ultricies eros. Quisque id viverra erat, vitae malesuada metus. Pellentesque cursus id ante sit amet rhoncus. Suspendisse porta ante a bibendum tempor. In turpis nibh, malesuada ut est id, sollicitudin lacinia elit. Aliquam imperdiet vehicula luctus. Mauris sodales molestie laoreet. Nunc quis dolor porta orci gravida laoreet.</p>
+
+        <div class="columns is-multiline dragons-list" *ngIf="dragons.length > 0">
+            <div class="column is-6-tablet is-4-fullhd dragon" *ngFor="let dragon of dragons | orderBy: order : false: true">
+
+                <div class="box">
+                    <h2 class="title is-4 dragon__name"><a href="#" [routerLink]="['/dragons', dragon.slug]">{{ dragon.name }}</a></h2>
+
+                    <div class="field has-addons dragon__actions">
+                        <div class="control">
+                            <button type="button" class="button dragon__btn" title="Editar informações do dragão" [routerLink]="['/dragons', 'edit', dragon.slug]">
+                                <span class="icon is-small">
+                                    <fa-icon icon="pencil-alt" size="sm"></fa-icon>
+                                </span>
+                            </button>
+                        </div>
+
+                        <div class="control">
+                            <button type="button" class="button dragon__btn" title="Remover dragão" (click)="removeDragon(dragon.slug)">
+                                <span class="icon is-small">
+                                    <fa-icon icon="trash" size="sm"></fa-icon>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="column is-12-tablet is-4-desktop is-3-fullhd">
+
+        <div class="message is-primary">
+            <div class="message-header">
+                <p>Não encontrou um dragão?</p>
+            </div>
+            <div class="message-body">
+                <div class="content">
+                    <p>Suspendisse tincidunt vehicula dui ut ullamcorper. Suspendisse ut accumsan felis. Nam fermentum magna at egestas tempor.</p>
+                    <button type="button" class="button is-info is-medium is-fullwidth" [routerLink]="['/dragons', 'new']">
+                        <span class="icon is-small"><fa-icon icon="dragon" size="xs"></fa-icon></span>
+                        <span>Cadastrar Dragão</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
