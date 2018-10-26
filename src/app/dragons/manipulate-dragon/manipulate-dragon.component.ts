@@ -13,7 +13,10 @@ export class ManipulateDragonComponent implements OnInit {
     dragon: Dragon;
     dragonForm: FormGroup;
     isEditMode: boolean;
-    isLoadingData: boolean;
+    isLoading: boolean;
+    isSendingData: boolean;
+    hasSubmmited: boolean;
+    hasFailed: boolean;
 
     constructor(
         private fb: FormBuilder,
@@ -23,7 +26,10 @@ export class ManipulateDragonComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.isLoadingData = true;
+        this.isLoading = true;
+        this.hasSubmmited = false;
+        this.isSendingData = false;
+        this.hasFailed = false;
         this.dragon = new Dragon({});
 
         this.route.params.subscribe(params => {
@@ -63,7 +69,7 @@ export class ManipulateDragonComponent implements OnInit {
         if (this.isEditMode) {
             this.bindEditableValues();
         } else {
-            this.isLoadingData = false;
+            this.isLoading = false;
         }
     }
 
@@ -79,7 +85,7 @@ export class ManipulateDragonComponent implements OnInit {
             }
         }
 
-        this.isLoadingData = false;
+        this.isLoading = false;
     }
 
     get histories(): FormArray {
@@ -119,10 +125,11 @@ export class ManipulateDragonComponent implements OnInit {
         this.service
             .put(this.dragon.slug, formData)
             .subscribe(
-                data => {
-                    this.router.navigate(['dragons', this.dragon.slug]);
-                },
-                err => console.error(err)
+                data => this.router.navigate(['dragons']),
+                err => {
+                    this.hasFailed = true;
+                    console.error(err);
+                }
             );
     }
 
@@ -130,10 +137,11 @@ export class ManipulateDragonComponent implements OnInit {
         this.service
             .post(formData)
             .subscribe(
-                data => {
-                    this.router.navigate(['dragons']);
-                },
-                err => console.error(err)
+                (data: Dragon) => this.router.navigate(['dragons', data.slug]),
+                err => {
+                    this.hasFailed = true;
+                    console.error(err);
+                }
             );
     }
 
@@ -146,11 +154,21 @@ export class ManipulateDragonComponent implements OnInit {
     }
 
     public submitForm() {
-        if (this.isEditMode) {
-            this.updateDragon(this.mapDragonProperties());
+        this.hasSubmmited = true;
+        this.hasFailed = false;
+
+        if (this.dragonForm.valid) {
+            this.isSendingData = true;
+
+            if (this.isEditMode) {
+                this.updateDragon(this.mapDragonProperties());
+            } else {
+                this.createDragon(this.mapDragonProperties());
+            }
         } else {
-            this.createDragon(this.mapDragonProperties());
+            this.hasFailed = true;
         }
+
     }
 
 }
