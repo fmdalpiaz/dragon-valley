@@ -10,18 +10,23 @@ import { Dragon } from './../dragon';
 })
 export class ListDragonsComponent implements OnInit {
     dragons: Dragon[];
+    isLoading: boolean;
     order: string;
 
     constructor(private service: DragonsService) { }
 
     ngOnInit() {
         this.dragons = [];
+        this.isLoading = true;
         this.order = 'name';
 
         this.service
             .getAll()
             .subscribe(
-                data => this.dragons = this.filterSluggedDragons(data),
+                data => {
+                    this.dragons = this.filterSluggedDragons(data);
+                    this.isLoading = false;
+                },
                 err => console.error(err)
             );
     }
