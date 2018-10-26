@@ -9,10 +9,13 @@ import { AppComponent } from './app.component';
 import { ScaffoldingComponent } from './core/scaffolding/scaffolding.component';
 import { HeaderComponent } from './core/header/header.component';
 
-import { ViewDragonComponent } from './dragons/view-dragon/view-dragon.component';
+import { LoginComponent } from './core/login/login.component';
 import { ListDragonsComponent } from './dragons/list-dragons/list-dragons.component';
+import { ViewDragonComponent } from './dragons/view-dragon/view-dragon.component';
 import { ManipulateDragonComponent } from './dragons/manipulate-dragon/manipulate-dragon.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+
+import { AuthGuard, AuthService } from './core/auth';
 
 import { OrderPipe } from 'ngx-order-pipe';
 
@@ -27,6 +30,7 @@ library.add(fas);
         AppComponent,
         ScaffoldingComponent,
         HeaderComponent,
+        LoginComponent,
         ViewDragonComponent,
         ListDragonsComponent,
         ManipulateDragonComponent,
@@ -41,7 +45,7 @@ library.add(fas);
         ReactiveFormsModule,
         FontAwesomeModule
     ],
-    providers: [],
+    providers: [AuthService, AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
