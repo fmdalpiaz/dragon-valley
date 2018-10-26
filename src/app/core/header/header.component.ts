@@ -1,13 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './../auth';
 
 @Component({
     selector: 'app-header',
-    templateUrl: './header.component.html'
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) {}
 
-    ngOnInit() { }
+    public logout(): void {
+        this.authService.logout();
+        this.router.navigate(['login']);
+    }
 
 }

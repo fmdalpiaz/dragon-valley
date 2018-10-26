@@ -3,22 +3,25 @@ import { environment } from './../../../environments/environment';
 
 @Injectable()
 export class AuthService {
-    private isLoggedIn = false;
 
     public isAuthenticated(): Promise<boolean> {
         return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(this.isLoggedIn), 1000);
+            setTimeout(() => resolve(this.hasToken()), 750);
         });
     }
 
-    public login(email: string, password: string) {
+    public login(email: string, password: string): void {
         if (email === environment.user.email && password === environment.user.password) {
-            this.isLoggedIn = true;
+            localStorage.setItem('token', 'JWT');
         }
     }
 
-    public logout() {
-        this.isLoggedIn = false;
+    public logout(): void {
+        localStorage.removeItem('token');
+    }
+
+    private hasToken(): boolean {
+        return !!localStorage.getItem('token');
     }
 
 }

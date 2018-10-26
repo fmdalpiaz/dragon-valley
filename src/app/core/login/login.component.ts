@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     hasSubmmited: boolean;
     hasFailed: boolean;
     isLoading: boolean;
+    validatingLogin: boolean;
 
     constructor(
         private fb: FormBuilder,
@@ -25,6 +26,9 @@ export class LoginComponent implements OnInit {
         this.hasSubmmited = false;
         this.hasFailed = false;
         this.isLoading = false;
+        this.validatingLogin = true;
+
+        this.validateAuthentication();
 
         this.loginForm = this.fb.group({
             'email': ['', [Validators.required, Validators.email]],
@@ -39,18 +43,25 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.valid) {
             this.isLoading = true;
             this.authService.login(this.loginForm.get('email').value, this.loginForm.get('password').value);
-
-            this.authService.isAuthenticated()
-                .then((authenticated: boolean) => {
-                    if (authenticated) {
-                        this.router.navigate(['dragons']);
-                    } else {
-                        this.isLoading = false;
-                        this.hasFailed = true;
-                    }
-                });
+            this.validateAuthentication(true);
         }
+    }
 
+    public validateAuthentication(isUserAction?: boolean) {
+        this.authService.isAuthenticated()
+            .then((authenticated: boolean) => {
+                if (authenticated) {
+                    this.router.navigate(['dragons']);
+                } else {
+                    this.isLoading = false;
+
+                    if (isUserAction) {
+                        this.hasFailed = true;
+                    } else {
+                        this.validatingLogin = false;
+                    }
+                }
+            });
     }
 
 }
