@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ScaffoldingComponent } from './core/scaffolding/scaffolding.component';
 import { LoginComponent } from './core/login/login.component';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { ListDragonsComponent } from './dragons/list-dragons/list-dragons.component';
 import { ViewDragonComponent } from './dragons/view-dragon/view-dragon.component';
 import { ManipulateDragonComponent } from './dragons/manipulate-dragon/manipulate-dragon.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 import { AuthGuard } from './core/auth';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Dragon } from '../dragon';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DragonsService } from '../dragons.service';
+import { DragonsService } from './../dragons.service';
+import { Dragon } from './../dragon';
 
 @Component({
     selector: 'app-view-dragon',
@@ -23,31 +23,24 @@ export class ViewDragonComponent implements OnInit {
         this.dragon = new Dragon({});
 
         this.route.params.subscribe(params => {
-            const slug: string = params['slug'];
-
-            if (!slug) {
-                console.error('Slug not found!');
-                return;
-            }
-
             this.service
-                .get(slug)
+                .get(params['slug'])
                 .subscribe(
                     data => {
                         this.dragon = data;
                         this.isLoading = false;
                     },
-                    err => this.router.navigate(['dragons'])
+                    err => this.router.navigate(['/dragons'])
                 );
 
         });
     }
 
-    public removeDragon(slug: string) {
+    public removeDragon(slug: string): void {
         this.service
             .delete(slug)
             .subscribe(
-                data => this.router.navigate(['dragons']),
+                data => this.router.navigate(['/dragons']),
                 err => console.log(err)
             );
     }

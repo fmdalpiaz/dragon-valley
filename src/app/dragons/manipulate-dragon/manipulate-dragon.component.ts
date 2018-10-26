@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { DragonsService } from './../dragons.service';
-import { Dragon } from '../dragon';
+import { Dragon } from './../dragon';
 
 @Component({
     selector: 'app-manipulate-dragon',
@@ -15,8 +15,8 @@ export class ManipulateDragonComponent implements OnInit {
     isEditMode: boolean;
     isLoading: boolean;
     isSendingData: boolean;
-    hasSubmmited: boolean;
     hasFailed: boolean;
+    hasSubmmited: boolean;
 
     constructor(
         private fb: FormBuilder,
@@ -50,7 +50,7 @@ export class ManipulateDragonComponent implements OnInit {
                             this.dragon = data;
                             this.createFormFields();
                         },
-                        err => this.router.navigate(['dragons'])
+                        err => this.router.navigate(['/dragons'])
                     );
             } else {
                 this.isEditMode = false;
@@ -125,7 +125,7 @@ export class ManipulateDragonComponent implements OnInit {
         this.service
             .put(this.dragon.slug, formData)
             .subscribe(
-                data => this.router.navigate(['dragons']),
+                data => this.router.navigate(['/dragons']),
                 err => {
                     this.hasFailed = true;
                     console.error(err);
@@ -137,7 +137,7 @@ export class ManipulateDragonComponent implements OnInit {
         this.service
             .post(formData)
             .subscribe(
-                (data: Dragon) => this.router.navigate(['dragons', data.slug]),
+                (data: Dragon) => this.router.navigate(['/dragons', data.slug]),
                 err => {
                     this.hasFailed = true;
                     console.error(err);

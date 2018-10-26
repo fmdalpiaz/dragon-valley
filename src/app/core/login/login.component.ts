@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     hasSubmmited: boolean;
     hasFailed: boolean;
     isLoading: boolean;
-    validatingLogin: boolean;
+    isValidatingLogin: boolean;
 
     constructor(
         private fb: FormBuilder,
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         this.hasSubmmited = false;
         this.hasFailed = false;
         this.isLoading = false;
-        this.validatingLogin = true;
+        this.isValidatingLogin = true;
 
         this.validateAuthentication();
 
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    public submitForm() {
+    public submitForm(): void {
         this.hasSubmmited = true;
         this.hasFailed = false;
 
@@ -51,14 +51,14 @@ export class LoginComponent implements OnInit {
         this.authService.isAuthenticated()
             .then((authenticated: boolean) => {
                 if (authenticated) {
-                    this.router.navigate(['dragons']);
+                    this.router.navigate(['/dragons']);
                 } else {
                     this.isLoading = false;
 
                     if (isUserAction) {
                         this.hasFailed = true;
                     } else {
-                        this.validatingLogin = false;
+                        this.isValidatingLogin = false;
                     }
                 }
             });
